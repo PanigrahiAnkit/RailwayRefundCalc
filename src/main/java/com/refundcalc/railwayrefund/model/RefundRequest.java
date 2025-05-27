@@ -1,11 +1,10 @@
 package com.refundcalc.railwayrefund.model;
 
 public class RefundRequest {
-    private String ticketType; // "confirmed" or "waiting"
+    private String ticketType; // "confirmed", "rac", "wl"
     private double ticketFare;
     private int timeBeforeDeparture; // in hours
-    private String journeyClass; // Optional: SL, 3A, etc.
-    private String passengerStatus; // Optional: WL, RAC, CNF
+    private String classType; // "SL", "1A", "2A", "3A", "3E"
 
     // Getters and Setters
     public String getTicketType() {
@@ -32,19 +31,11 @@ public class RefundRequest {
         this.timeBeforeDeparture = timeBeforeDeparture;
     }
 
-    public String getJourneyClass() {
-        return journeyClass;
+    public String getClassType() {
+        return classType;
     }
 
-    public void setJourneyClass(String journeyClass) {
-        this.journeyClass = journeyClass;
-    }
-
-    public String getPassengerStatus() {
-        return passengerStatus;
-    }
-
-    public void setPassengerStatus(String passengerStatus) {
-        this.passengerStatus = passengerStatus;
+    public void setClassType(String classType) {
+        this.classType = classType;
     }
 }
