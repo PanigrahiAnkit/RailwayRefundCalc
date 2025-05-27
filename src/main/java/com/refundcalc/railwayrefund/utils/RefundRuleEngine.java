@@ -1,7 +1,8 @@
 package com.refundcalc.railwayrefund.utils;
 
-import com.refundcalc.railwayrefund.controller.RefundRequest;
-import com.refundcalc.railwayrefund.controller.RefundResponse;
+import com.refundcalc.railwayrefund.model.RefundRequest;
+import com.refundcalc.railwayrefund.model.RefundResponse;
+
 
 public class RefundRuleEngine {
 
