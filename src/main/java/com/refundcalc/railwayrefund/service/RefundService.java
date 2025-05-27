@@ -10,17 +10,17 @@ public class RefundService {
     public RefundResponse getRefundEstimate(RefundRequest request) {
         double fare = request.getTicketFare();
         String ticketType = request.getTicketType().toLowerCase();
-        String journeyClass = request.getJourneyClass().toUpperCase();
+        String classType = request.getClassType().toUpperCase();
         int hoursLeft = request.getTimeBeforeDeparture();
 
         double deduction = 0;
         String message = "";
         String suggestion = "";
-        String deductionDetails = getDeductionTooltip(journeyClass);
+        String deductionDetails = getDeductionTooltip(classType);
 
         if ("confirmed".equals(ticketType)) {
             if (hoursLeft > 48) {
-                deduction = getFlatDeduction(journeyClass);
+                deduction = getFlatDeduction(classType);
                 message = "Flat cancellation charges applied for >48 hrs.";
                 suggestion = "Cancel before 48 hours for minimal deduction.";
             } else if (hoursLeft > 12) {
@@ -55,8 +55,8 @@ public class RefundService {
         return new RefundResponse(refundAmount, message, deductionDetails, suggestion);
     }
 
-    private double getFlatDeduction(String journeyClass) {
-        switch (journeyClass) {
+    private double getFlatDeduction(String classType) {
+        switch (classType) {
             case "SL": return 60;
             case "3A": return 180;
             case "3E": return 180;
@@ -66,7 +66,7 @@ public class RefundService {
         }
     }
 
-    private String getDeductionTooltip(String journeyClass) {
+    private String getDeductionTooltip(String classType) {
         return """
                 Deduction Chart as per IRCTC (for Confirmed Tickets):
                 - 1A: ₹240
